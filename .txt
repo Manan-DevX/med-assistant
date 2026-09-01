@@ -1,0 +1,162 @@
+ElderCompanion: A Physically Embodied AI Assistant to Reduce Loneliness and Support Medication Adherence in Older Adults
+
+Team Members
+Manan Shah
+Ranveer Singh Ranawat
+Sanyam Golechha
+
+Abstract 
+Loneliness and medication non‑adherence are prevalent, interlinked challenges among older adults, with significant implications for mental and physical health. This project proposes ElderCompanion, a physically embodied AI assistant in the form of a small, friendly robot designed for community‑dwelling seniors. The system provides (i) personalized medication and event reminders, (ii) natural‑language conversational companionship, and (iii) seamless family telepresence so relatives can “tune in” and speak with the user through the robot. The design is grounded in recent evidence that socially assistive robots significantly reduce loneliness in later life, and that adaptive, multimodal prompting can support medication management while preserving autonomy. We outline the system architecture (edge speech + LLM dialogue + scheduled reminders + family app), anticipated benefits (reduced loneliness, improved adherence, increased perceived support), and key ethical considerations (emotional attachment, privacy, and caregiver oversight). This work contributes a research‑backed concept and prototype blueprint for a low‑cost, home‑deployable companion robot targeting isolation and self‑care in aging populations.[pmc.ncbi.nlm.nih][arxiv][library.iated][aging.jmir]
+
+Problem Statement
+Loneliness in older adults affects over a quarter of seniors globally and is associated with higher risks of depression, cognitive decline, cardiovascular disease, and mortality.[pmc.ncbi.nlm.nih]
+Medication non‑adherence is common in aging populations due to forgetfulness, complex regimens, and declining cognition, leading to avoidable hospitalizations and adverse drug events.[arxiv]
+Existing digital solutions (phone reminders, chatbots) often lack physical presence, accessibility for low‑tech users, and family integration, limiting sustained engagement and trust.[library.iated][aging.jmir]
+There is a need for an embodied, always‑on companion that combines adaptive reminders, empathetic conversation, and easy family connection in a single, senior‑friendly device.
+
+Proposed Technology Stack / Tools
+Hardware (MVP)
+Compute: Raspberry Pi 4 (or Raspberry Pi Zero 2 W) single‑board computer.
+Audio: 4‑mic array (e.g., ReSpeaker) for far‑field voice capture; 3–5W amplified speaker module + small speaker.
+Enclosure: 3D‑printed “toy‑robot” body with LED indicators for listening/speaking states.
+Power: 5V 2–3A USB‑C power adapter.
+On‑device Software
+OS: Raspberry Pi OS (64‑bit).
+Runtime: Python 3.10+ with audio I/O (PyAudio / sounddevice).
+Voice front‑end: Wake‑word detection (Porcupine), voice activity detection (Silero VAD).
+Scheduler: APScheduler / cron for time‑based medication and event reminders.
+AI & Cloud Services
+Speech‑to‑text (STT): Google Cloud Speech‑to‑Text or Whisper‑based API.
+Dialogue: Hosted LLM API for conversational responses and reminder confirmations.
+Text‑to‑speech (TTS): Google Cloud TTS / Azure TTS for natural‑sounding voice output.
+Backend & Family Interface
+Backend: FastAPI (Python) service with REST APIs for medications, reminders, and family messages.
+Database: PostgreSQL (or SQLite for prototype) to store users, medication schedules, events, and logs.
+Family app: Minimal web app (Next.js + Tailwind) for caregivers to configure schedules, send voice/text messages, and view adherence logs.
+Security & Privacy
+TLS for all network traffic, basic authentication for caregiver accounts, minimal local audio storage with encryption.
+
+Expected Outcome
+By the end of the project, we expect to deliver:
+Working MVP prototype of ElderCompanion: a small robot that can
+Speak scheduled medication and event reminders,
+Engage in basic friendly conversation, and
+Play voice messages from family members.[arxiv][aging.jmir]
+Evidence‑backed design aligned with research showing that social robots can reduce loneliness and improve well‑being in older adults, and that adaptive robotic prompting can support medication adherence.[pmc.ncbi.nlm.nih][arxiv][library.iated]
+Documented architecture and codebase (on‑device logic, backend APIs, family web app) that can be extended in future work with features such as mobility, vision‑based fall detection, or more advanced personalization.
+User evaluation plan (for future work) to measure changes in perceived loneliness, medication adherence, and family connectedness using standard scales and usage logs.[pmc.ncbi.nlm.nih][aging.jmir]
+
+Research Paper References 
+1. Social Robots & Loneliness in Older Adults
+Mehrabi, F., & Ghezelbash, G. (2025). Wired for companionship: a meta‑analysis on social robots filling the void of loneliness in later life. The Gerontologist, 65(12), gnaf219.
+Meta‑analysis of 19 studies (N = 1,083) showing that social robots significantly reduce loneliness in older adults with a large pooled effect size; effects vary by setting and region.[pmc.ncbi.nlm.nih]
+Murayama, H., & Takase, M. (2025). Evaluating the Effectiveness of Digital Social Robots in Reducing Loneliness Among Community‑Dwelling Older Adults in Japan: Randomized Controlled Trial and Qualitative Analysis. JMIR Aging, 8, e74422.
+4‑week RCT with a humanoid robot (BOCCO emo) that reminded participants of daily tasks and facilitated conversations with family/human operators; found greater reductions in loneliness and improved psychological well‑being vs control.[aging.jmir]
+LEOSTE, T. (2025). A Systematic Review of Socially Assistive Robots in Elderly Care: Integration, Benefits, and Challenges. In ICERI2025 Proceedings.
+Synthesizes 24 empirical studies (2019–2024): SARs with personalized, emotion‑sensitive interactions reduce loneliness and improve engagement; highlights telepresence features for family connection.[library.iated]
+2. AI & Robotics for Medication Management
+Gangaraju, K., et al. (2025). Assist‑As‑Needed: Adaptive Multimodal Robotic Assistance for Medication Management in Dementia Care. arXiv:2510.06633.
+Presents an adaptive hierarchical prompting system on a Pepper robot (verbal → verbal+gesture → full multimodal guidance) powered by an LLM and multimodal sensing to support medication adherence while preserving autonomy.[arxiv]
+[Author(s)]. (2025). Artificial Intelligence in Medication Management for Older Adults in [Journal]. PMC (narrative review).
+Reviews AI approaches to adherence, polypharmacy, and adverse drug events in older adults; informs safety and design considerations for reminder systems.
+Johns Hopkins Malone Center for Engineering in Healthcare. (2025). Aging gracefully with AI.
+Describes a voice assistant that processes after‑visit summaries and generates personalized medication reminders aligned with routines and interactions.
+3. Long‑Term Use & Feasibility of Companion Robots
+[Authors]. (2026). Case report: A five‑case series of 18‑month home use of companion robots with cognitively challenged older adults. Frontiers in Psychiatry.
+Demonstrates long‑term feasibility and acceptability of companion robots in home settings, supporting deployment beyond short lab trials.
+[Authors]. (2026). Humanoid Robot–Assisted Support for Health Care in Older Adults. PMC (scoping review).
+Maps humanoid robot models and applications for aging populations, including reflective dialogues with LLMs for positive behavior change.
+
+ElderCompanion: A Physically Embodied AI Assistant to Reduce Loneliness and Support Medication Adherence in Older Adults
+
+The Twin Crisis: Loneliness & Non-Adherence
+
+Loneliness Epidemic
+
+Affects >25% of seniors globally, linked to depression, cognitive decline, cardiovascular disease, and elevated mortality risk.
+
+Medication Non-Adherence
+
+Forgetfulness, complex regimens, and declining cognition drive avoidable hospitalizations and adverse drug events in aging populations.
+
+The Gap: Why Existing Solutions Fall Short
+
+What's Missing
+
+Phone reminders and chatbots lack physical presence and meaningful family integration
+
+No existing solution combines adaptive reminders, empathetic conversation, and family connection in one embodied device
+
+What the Evidence Shows
+
+A meta-analysis of 19 studies (N = 1,083) demonstrates that social robots significantly reduce loneliness in older adults, with a large pooled effect size — though effects vary by setting and region.
+
+Evidence: AI for Medication Management
+
+Adaptive Hierarchical Prompting
+
+Verbal → verbal+gesture → full multimodal guidance escalates support while preserving user autonomy, as demonstrated on the Pepper robot with LLM-powered sensing.
+
+Personalized LLM Reminders
+
+Large language models generate reminders aligned with individual routines and conversational history, increasing relevance and compliance.
+
+Reducing Polypharmacy Risk
+
+AI-assisted approaches demonstrably reduce polypharmacy complications and adverse drug events in older adult populations.
+
+ElderCompanion System Architecture
+
+A modular, privacy-conscious stack designed for low-cost home deployment and iterative extension.
+
+Three Core Capabilities
+
+ Medication & Event Reminders
+
+Scheduled, adaptive prompts with confirmation tracking ensure timely adherence without overwhelming the user.
+
+ Conversational Companionship
+
+Natural-language LLM dialogue delivers friendly, empathetic interaction tailored to each individual's tone and needs.
+
+ Family Telepresence
+
+Relatives send voice and text messages; caregivers view adherence logs via a secure companion web application.
+
+MVP Deliverables & Feasibility
+
+What We're Delivering
+
+Functional robot speaking reminders, engaging in open-ended conversation, and playing family messages
+
+Fully documented architecture and open codebase for community extension
+
+An 18-month home deployment case series validates long-term feasibility and acceptability of companion robots — well beyond short laboratory trials.
+
+Key Ethical Considerations
+
+Emotional Attachment
+
+Designed for appropriate boundaries — the robot is positioned as a supportive tool, never a replacement for genuine human connection.
+
+Privacy & Security
+
+TLS encryption, minimal local audio storage, and secure caregiver authentication protect sensitive user data at every layer.
+
+Autonomy & Oversight
+
+Adaptive reminders preserve user choice; family access is explicitly balanced against resident privacy and dignity.
+
+Next Steps: Evaluation & Impact
+
+User Evaluation
+
+Measure changes in loneliness, medication adherence, and family connectedness through structured pilot studies.
+
+Technical Roadmap
+
+Extend capabilities with mobility, fall detection, and advanced personalization as the platform matures.
+
+Pathway to Equity
+
+Deliver a low-cost, home-deployable solution advancing aging-in-place and digital health equity for underserved populations.
